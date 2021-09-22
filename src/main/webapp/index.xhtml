@@ -19,28 +19,30 @@
 
         <script>
             //$(document).ready(function () {
-                //$("#header").load("header.xhtml");
-                //$("#center").load("center.xhtml");
-                //$("#footer").load("footer.xhtml");
-                //alert('opa !');
+            //$("#header").load("header.xhtml");
+            //$("#center").load("center.xhtml");
+            //$("#footer").load("footer.xhtml");
+            //alert('opa !');
             $window.hover(function () {
                 $('#btnGetFileHash').onclick(function () {
                     $("#liTextHash").removeClass("active");
-                    $("#liFileHash").addClass("active");                    
+                    $("#liFileHash").addClass("active");
                 });
                 $('#btnGetTextHash').onclick(function () {
                     $("#liFileHash").removeClass("active");
-                    $("#liTextHash").addClass("active");                    
+                    $("#liTextHash").addClass("active");
                 });
             });
             function clickFile() {
                 $("#liFileHash").addClass("active");
                 $("#liTextHash").removeClass("active");
-            };
+            }
+            ;
             function clickText() {
                 $("#liTextHash").addClass("active");
                 $("#liFileHash").removeClass("active");
-            };            
+            }
+            ;
         </script>
 
     </head>
@@ -66,7 +68,7 @@
                     <div class="row" style="width: 100%;">
 
                         <div class="col-md-10 col-md-offset-1">
-                            
+
                             <!--
                             <nav class="navbar navbar-default nav-justified hide">
                                 <div class="container-fluid"> 
@@ -80,7 +82,7 @@
                                 </div>
                             </nav>
                             -->
-                            
+
                             <div align="center">
                                 <ul class="nav nav-tabs is-primary nav-justified nav-pills">
                                     <li id="liTextHash" class="active">
@@ -117,12 +119,21 @@
                                         </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.textHashesList}">
-                                            <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
-                                                <hr/>
-                                                <div class="text-info" align="left">
-                                                    <label class="label label-info">${txtList.type}</label>=<label>${txtList.hash}</label>
+                                            <p/>
+                                            <div class="panel panel-info">
+                                                <div class="panel-heading">
+                                                    <h1 class="panel-title">
+                                                        <label jsf:value="Hashes for text = #{cdiIndex.hashText}"/>
+                                                    </h1>
                                                 </div>
-                                            </c:forEach>
+                                                <div class="panel-body">
+                                                    <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
+                                                        <div class="text-info" align="left">
+                                                            <label class="label label-info">${txtList.type}</label> = <label>${txtList.hash}</label>
+                                                        </div>
+                                                    </c:forEach>
+                                                </div>
+                                            </div>                                            
                                         </c:if>
                                     </form>
 
@@ -159,14 +170,21 @@
                                         </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.fileHashesList}">
-                                            <hr/>                        
-                                            <label jsf:value="Hashes for file = #{cdiIndex.uploadedFile.submittedFileName}"/>
-                                            <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
-                                                <hr/>
-                                                <div class="text-info" align="left">
-                                                    <label class="label label-warning">${fsList.type}</label>=<label>${fsList.hash}</label>
+                                            <p/>
+                                            <div class="panel panel-warning">
+                                                <div class="panel-heading">
+                                                    <h1 class="panel-title">
+                                                        <label jsf:value="Hashes for file = #{cdiIndex.uploadedFile.submittedFileName}"/>
+                                                    </h1>
                                                 </div>
-                                            </c:forEach>
+                                                <div class="panel-body">
+                                                    <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
+                                                        <div class="text-info" align="left">
+                                                            <label class="label label-warning">${fsList.type}</label> = <label>${fsList.hash}</label>
+                                                        </div>
+                                                    </c:forEach>
+                                                </div>
+                                            </div>                                            
                                         </c:if>                    
 
                                     </form>   
