@@ -17,12 +17,13 @@
         <script src="resources/js/jquery-1.12.4.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
 
-        <!--<script>
-            $(document).ready(function () {
+        <script>
+            //$(document).ready(function () {
                 //$("#header").load("header.xhtml");
                 //$("#center").load("center.xhtml");
                 //$("#footer").load("footer.xhtml");
                 //alert('opa !');
+            $window.hover(function () {
                 $('#btnGetFileHash').onclick(function () {
                     $("#liTextHash").removeClass("active");
                     $("#liFileHash").addClass("active");                    
@@ -40,7 +41,7 @@
                 $("#liTextHash").addClass("active");
                 $("#liFileHash").removeClass("active");
             };            
-        </script>-->
+        </script>
 
     </head>
 
@@ -81,7 +82,7 @@
                             -->
                             
                             <div align="center">
-                                <ul class="nav nav-tabs is-primary nav-justified">
+                                <ul class="nav nav-tabs is-primary nav-justified nav-pills">
                                     <li id="liTextHash" class="active">
                                         <a data-toggle="tab" href="#text-tab">
                                             <span class="glyphicon glyphicon-list"/>
@@ -101,11 +102,11 @@
 
                                 <div align="center" class="tab-pane active" id="text-tab">
 
-                                    <form jsf:id="txtForm">
+                                    <form jsf:id="txtForm" jsf:prependId="false">
                                         <br/>
                                         <textarea cols="44" rows="4" class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
                                         <p/>
-                                        <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
+                                        <a jsf:id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
                                             <span class="glyphicon glyphicon-play"/>
                                             Get Text Hash
                                         </a> 
@@ -129,7 +130,7 @@
 
                                 <div align="center" class="tab-pane" id="file-tab">
 
-                                    <form jsf:id="fileForm" enctype="multipart/form-data">
+                                    <form jsf:id="fileForm" jsf:prependId="false" enctype="multipart/form-data">
                                         <div class="file-input">
                                             <br/>
                                             <label class="file-input btn btn-info">
@@ -147,7 +148,7 @@
                                             </label>                        
                                         </div> 
                                         <br/>
-                                        <a id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">
+                                        <a jsf:ajax="true" jsf:id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">
                                             <span class="glyphicon glyphicon-play"/>
                                             Get File Hash
                                         </a>
@@ -163,7 +164,7 @@
                                             <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
                                                 <hr/>
                                                 <div class="text-info" align="left">
-                                                    <label class="label label-success">${fsList.type}</label>=<label>${fsList.hash}</label>
+                                                    <label class="label label-warning">${fsList.type}</label>=<label>${fsList.hash}</label>
                                                 </div>
                                             </c:forEach>
                                         </c:if>                    
