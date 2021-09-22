@@ -11,16 +11,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>jsf-hash</title>        
-        <!--<link rel="stylesheet" href="resources/css/jsfcrud.css"></link>
-        <link rel="stylesheet" href="resources/css/bulma.min.css"></link>
-        <link rel="stylesheet" href="resources/css/uikit.min.css"></link>-->
         <link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"></link>
-        <link rel="stylesheet" href="resources/css/normalize.css"></link>
+        <!--<link rel="stylesheet" href="resources/css/normalize.css"></link>-->
         <script src="resources/js/jquery-1.12.4.min.js"></script>
-        <!--<script src="resources/js/jsfcrud.js"></script>
-        <script src="resources/js/uikit.min.js"></script>
-        <script src="resources/js/uikit-icons.min.js"></script>--> 
         <script src="resources/js/bootstrap.min.js"></script>
 
         <!--<script>
@@ -59,7 +53,10 @@
                 <div class="panel-heading">
                     <h1 style="color: black;" class="panel-title text-center">
                         <span class="glyphicon glyphicon-globe"/>
-                        WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap Demo.  
+                        WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap = Demo web-application...  
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#flipFlop">
+                            About
+                        </button>
                     </h1>
                 </div>
 
@@ -68,27 +65,21 @@
                     <div class="row" style="width: 100%;">
 
                         <div class="col-md-10 col-md-offset-1">
-
-                            <nav class="navbar navbar-default ">
-
+                            
+                            <!--
+                            <nav class="navbar navbar-default nav-justified hide">
                                 <div class="container-fluid"> 
-
-                                    <div class="btn-toolbar" role="toolbar">
-                                        
-                                        <div class="btn-group" role="group">
-                                            
+                                    <div class="btn-toolbar">
+                                        <div class="btn-group">
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#flipFlop">
                                                 About
                                             </button> 
-                                            
                                         </div>
-                                        
                                     </div>
-                                    
                                 </div>
-                                
                             </nav>
-
+                            -->
+                            
                             <div align="center">
                                 <ul class="nav nav-tabs is-primary nav-justified">
                                     <li id="liTextHash" class="active">
@@ -117,7 +108,12 @@
                                         <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
                                             <span class="glyphicon glyphicon-play"/>
                                             Get Text Hash
-                                        </a>
+                                        </a> 
+                                        ...
+                                        <a id="btnClearTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.clearText()}">
+                                            <span class="glyphicon glyphicon-remove"/>
+                                            Clear
+                                        </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.textHashesList}">
                                             <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
@@ -137,14 +133,16 @@
                                         <div class="file-input">
                                             <br/>
                                             <label class="file-input btn btn-info">
-                                                <span class="glyphicon glyphicon-hdd"/>
-                                                &nbsp; Browse 
+                                                <span class="glyphicon glyphicon-folder-open"/>
+                                                -> Browse 
                                                 <input 
                                                     jsf:id="finput" 
                                                     class="btn btn-default file-input" 
                                                     type="file" 
                                                     jsf:value="#{cdiIndex.uploadedFile}">
-                                                    <f:ajax listener="#{cdiIndex.upload()}" />
+                                                    <ui:remove>
+                                                        <f:ajax listener="#{cdiIndex.upload()}" />
+                                                    </ui:remove>
                                                 </input>
                                             </label>                        
                                         </div> 
@@ -153,6 +151,11 @@
                                             <span class="glyphicon glyphicon-play"/>
                                             Get File Hash
                                         </a>
+                                        ...
+                                        <a id="btnClearFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.clearFile()}">
+                                            <span class="glyphicon glyphicon-remove"/>
+                                            Clear
+                                        </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.fileHashesList}">
                                             <hr/>                        
@@ -196,7 +199,7 @@
                                 <img src="resources/img/spring-81.png"/> + <img src="resources/img/jsf.png"/> + 
                                 <img src="resources/img/html5-css3.jpeg"/> + <img src="resources/img/bootstrap.jpeg" width="81" height="65"/>
                                 <p/>
-                                Spring + JSF + Html5 + Boostrap-3 demo web-application.<br/>
+                                Spring + JSF + Html5 + Boostrap = demo web-application.<br/>
                                 Spring = v4.3.25, JSF = MyFaces realization v2.2.14, Bootstrap = v3.4.1.<br/>
                                 Create by Roman Koldaev, Saratov city, Russia, mail = <A HREF="mailto:harp07@mail.ru"> harp07@mail.ru </A> <br/>
                                 Pages = <a href="https://github.com/harp077/">https://github.com/harp077/</a> , <a href="https://sourceforge.net/u/harp07/profile/"> https://sourceforge.net/u/harp07/profile/ </a> 

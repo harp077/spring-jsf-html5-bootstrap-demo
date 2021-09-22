@@ -91,21 +91,24 @@ public class CdiIndex {
                 }
                 textHashesList.add(hdm);
                 //System.out.println(textHashesList);
-                
             }
             /*hashes.put("md2", DigestUtils.md2Hex(hashText));
             //////////  Hashing.crc32().hashString(buf, Charsets.UTF_8).toString()
             hashes.put("adler32",Hashing.adler32().hashUnencodedChars(hashText).toString());*/
             cdiMess.addMessage("Hashes calculated !","calc-hash",FacesMessage.SEVERITY_INFO);
-        } else {cdiMess.addMessage("Emty Text Area !","null-text",FacesMessage.SEVERITY_INFO);}
+        } else {
+            clearText();
+            cdiMess.addMessage("Emty Text Area !","null-text",FacesMessage.SEVERITY_ERROR);
+        }
     }
     
     //@Async
     public void upload() {
-        /*if (file.getSize()<=0L) {
-            cdiMess.addMessage("Empty file !","null-file",FacesMessage.SEVERITY_INFO);
+        if (uploadedFile.getSize()<=0L) {
+            cdiMess.addMessage("Empty file !","null-file",FacesMessage.SEVERITY_ERROR);
+            clearFile();
             return;
-        }*/
+        }
         try {
             fileHashesList.clear();
             targetFile = new File("/tmp/targetFile.tmp");
@@ -136,8 +139,10 @@ public class CdiIndex {
                 //System.out.println("file hash = " + DigestUtils.md5(fileContents));
             }
             targetFile.delete();
+            cdiMess.addMessage("Hashes calculated !","calc-hash",FacesMessage.SEVERITY_INFO);
         } catch (IOException ex) {
             targetFile.delete();
+            clearFile();
             System.out.println(ex.toString());
             cdiMess.addMessage("IO-exception !","io-exception",FacesMessage.SEVERITY_INFO);
         }
@@ -149,7 +154,17 @@ public class CdiIndex {
             cdiMess.addMessage("Succesful"+event.getFile().getFileName()+" is uploaded !","load-file",FacesMessage.SEVERITY_INFO);
             upload();
         }     
-    } */   
+    } */  
+    
+    public void clearText() {
+        textHashesList.clear();
+        hashText="";
+    }
+    
+    public void clearFile() {
+        fileHashesList.clear();
+        uploadedFile=null;
+    }    
     
     public String getHashText() {
         return hashText;
