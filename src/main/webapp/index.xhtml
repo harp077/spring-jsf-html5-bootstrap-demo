@@ -50,112 +50,119 @@
 
     </head>
 
-    <body style="margin-top: 1px;">
+    <body style="margin-top: 5px;">
 
         <div class="container-fluid">
 
-            <div class="row">
+            <div class="panel panel-success">
+                
+                <div class="panel-heading">
+                    <h1 class="panel-title text-center">
+                        <span class="glyphicon glyphicon-globe"/>
+                        WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap Demo.                        
+                    </h1>
+                </div>
 
-                <div class="col-md-10 col-md-offset-1">
+                <div class="panel-body">
 
-                    <div class="nav-header bg-success text-center">
-                        <h4>
-                            <span class="glyphicon glyphicon-globe"/>
-                            WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap Demo.
-                        </h4>
-                    </div>        
+                    <div class="row" style="width: 100%;">
 
-                    <div align="center">
-                        <ul class="nav nav-tabs is-primary">
-                            <li id="liTextHash" class="active">
-                                <a data-toggle="tab" href="#text-tab">
-                                    <span class="glyphicon glyphicon-list"/>
-                                    Text Hash
-                                </a>
-                            </li>
-                            <li id="liFileHash">
-                                <a data-toggle="tab" href="#file-tab">
-                                    <span class="glyphicon glyphicon-file"/>
-                                    File Hash
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="col-md-10 col-md-offset-1">
 
-                    <div class="tab-content">
+                            <div align="center">
+                                <ul class="nav nav-tabs is-primary nav-justified">
+                                    <li id="liTextHash" class="active">
+                                        <a data-toggle="tab" href="#text-tab">
+                                            <span class="glyphicon glyphicon-list"/>
+                                            Text Hash
+                                        </a>
+                                    </li>
+                                    <li id="liFileHash">
+                                        <a data-toggle="tab" href="#file-tab">
+                                            <span class="glyphicon glyphicon-file"/>
+                                            File Hash
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
 
-                        <div align="center" class="tab-pane active" id="text-tab">
+                            <div class="tab-content">
 
-                            <form jsf:id="txtForm">
-                                <br/>
-                                <textarea class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
-                                <p/>
-                                <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
-                                    <span class="glyphicon glyphicon-play"/>
-                                    Get Text Hash
-                                </a>
+                                <div align="center" class="tab-pane active" id="text-tab">
 
-                                <c:if test="#{not empty cdiIndex.textHashesList}">
-                                    <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
-                                        <hr/>
-                                        <div class="text-info" align="left">
-                                            <label class="label label-info">${txtList.type}</label>=<label>${txtList.hash}</label>
-                                        </div>
-                                    </c:forEach>
-                                </c:if>
-                            </form>
+                                    <form jsf:id="txtForm">
+                                        <br/>
+                                        <textarea cols="44" rows="4" class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
+                                        <p/>
+                                        <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
+                                            <span class="glyphicon glyphicon-play"/>
+                                            Get Text Hash
+                                        </a>
+
+                                        <c:if test="#{not empty cdiIndex.textHashesList}">
+                                            <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
+                                                <hr/>
+                                                <div class="text-info" align="left">
+                                                    <label class="label label-info">${txtList.type}</label>=<label>${txtList.hash}</label>
+                                                </div>
+                                            </c:forEach>
+                                        </c:if>
+                                    </form>
+
+                                </div>
+
+                                <div align="center" class="tab-pane" id="file-tab">
+
+                                    <form jsf:id="fileForm" enctype="multipart/form-data">
+                                        <div class="file-input">
+                                            <br/>
+                                            <label class="file-input btn btn-info">
+                                                <span class="glyphicon glyphicon-hdd"/>
+                                                &nbsp; Browse 
+                                                <input 
+                                                    jsf:id="finput" 
+                                                    class="btn btn-default file-input" 
+                                                    type="file" 
+                                                    jsf:value="#{cdiIndex.uploadedFile}">
+                                                    <f:ajax listener="#{cdiIndex.upload()}" />
+                                                </input>
+                                            </label>                        
+                                        </div> 
+                                        <br/>
+                                        <a id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">
+                                            <span class="glyphicon glyphicon-play"/>
+                                            Get File Hash
+                                        </a>
+
+                                        <c:if test="#{not empty cdiIndex.fileHashesList}">
+                                            <hr/>                        
+                                            <label jsf:value="Hashes for file = #{cdiIndex.uploadedFile.submittedFileName}"/>
+                                            <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
+                                                <hr/>
+                                                <div class="text-info" align="left">
+                                                    <label class="label label-success">${fsList.type}</label>=<label>${fsList.hash}</label>
+                                                </div>
+                                            </c:forEach>
+                                        </c:if>                    
+
+                                    </form>   
+
+                                </div>
+
+                            </div> 
 
                         </div>
 
-                        <div align="center" class="tab-pane" id="file-tab">
-
-                            <form jsf:id="fileForm" enctype="multipart/form-data">
-                                <div class="file-input">
-                                    <br/>
-                                    <label class="file-input btn btn-info">
-                                        <span class="glyphicon glyphicon-hdd"/>
-                                        &nbsp; Browse 
-                                        <input 
-                                            jsf:id="finput" 
-                                            class="btn btn-default file-input" 
-                                            type="file" 
-                                            jsf:value="#{cdiIndex.uploadedFile}">
-                                            <f:ajax listener="#{cdiIndex.upload()}" />
-                                        </input>
-                                    </label>                        
-                                </div> 
-                                <br/>
-                                <a id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">
-                                    <span class="glyphicon glyphicon-play"/>
-                                    Get File Hash
-                                </a>
-
-                                <c:if test="#{not empty cdiIndex.fileHashesList}">
-                                    <hr/>                        
-                                    <label jsf:value="Hashes for file = #{cdiIndex.uploadedFile.submittedFileName}"/>
-                                    <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
-                                        <hr/>
-                                        <div class="text-info" align="left">
-                                            <label class="label label-success">${fsList.type}</label>=<label>${fsList.hash}</label>
-                                        </div>
-                                    </c:forEach>
-                                </c:if>                    
-
-                            </form>   
-
-                        </div>
-
-                    </div>     
-
-                    <div class="nav-header bg-info text-center">
-                        <span class="glyphicon glyphicon-info-sign"/>
-                        Build 22-09-2021.
-                    </div>  
-                    <hr/>
+                    </div> 
 
                 </div>
 
-            </div>
+                <div class="panel-footer text-center">
+                    <span class="glyphicon glyphicon-info-sign"/>
+                    Build 22-09-2021.
+                </div> 
+
+            </div>            
 
         </div>
 
