@@ -12,7 +12,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Named("userSession") 
 @SessionScope
-public class UserSession { //implements Serializable {
+public class UserSession implements Serializable {
     
     @Inject 
     private CdiMessages cdiMess;    

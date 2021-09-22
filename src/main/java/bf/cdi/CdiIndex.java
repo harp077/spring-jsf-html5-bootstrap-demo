@@ -5,6 +5,7 @@ import bf.model.HashDataModel;
 //import com.google.common.hash.Hashing;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -22,7 +23,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @Named
 //@RequestScope
 @SessionScope
-public class CdiIndex {
+public class CdiIndex implements Serializable {
 
     public CdiIndex() {
     }
