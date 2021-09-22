@@ -58,16 +58,25 @@
                 <div class="col-md-10 col-md-offset-1">
 
                     <div class="nav-header bg-success text-center">
-                        <h4>WEB Text and File Hash-Calculator. Spring + JSF + Html5 + Bootstrap Demo.</h4>
+                        <h4>
+                            <span class="glyphicon glyphicon-globe"/>
+                            WEB Text and File Hash-Calculator. Spring + JSF + Html5 + Bootstrap Demo.
+                        </h4>
                     </div>        
 
                     <div align="center">
                         <ul class="nav nav-tabs is-primary">
                             <li id="liTextHash" class="active">
-                                <a data-toggle="tab" href="#text-tab">Text Hash</a>
+                                <a data-toggle="tab" href="#text-tab">
+                                    <span class="glyphicon glyphicon-list"/>
+                                    Text Hash
+                                </a>
                             </li>
                             <li id="liFileHash">
-                                <a data-toggle="tab" href="#file-tab">File Hash</a>
+                                <a data-toggle="tab" href="#file-tab">
+                                    <span class="glyphicon glyphicon-file"/>
+                                    File Hash
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -79,8 +88,11 @@
                             <form jsf:id="txtForm">
                                 <br/>
                                 <textarea class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
-                                <br/>
-                                <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">get hash</a>
+                                <p/>
+                                <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
+                                    <span class="glyphicon glyphicon-play"/>
+                                    Get Text Hash
+                                </a>
 
                                 <c:if test="#{not empty cdiIndex.textHashesList}">
                                     <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
@@ -100,6 +112,7 @@
                                 <div class="file-input">
                                     <br/>
                                     <label class="file-input btn btn-info">
+                                        <span class="glyphicon glyphicon-open-file"/>
                                         Browse 
                                         <input 
                                             jsf:id="finput" 
@@ -111,7 +124,10 @@
                                     </label>                        
                                 </div> 
                                 <br/>
-                                <a id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">get hash</a>
+                                <a id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">
+                                    <span class="glyphicon glyphicon-play"/>
+                                    Get File Hash
+                                </a>
 
                                 <c:if test="#{not empty cdiIndex.fileHashesList}">
                                     <hr/>                        
@@ -131,6 +147,7 @@
                     </div>     
 
                     <div class="nav-header bg-info text-center">
+                        <span class="glyphicon glyphicon-info-sign"/>
                         Build 22-09-2021.
                     </div>   
 
