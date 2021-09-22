@@ -61,7 +61,7 @@
                     <div class="nav-header bg-success text-center">
                         <h4>
                             <span class="glyphicon glyphicon-globe"/>
-                            WEB Text and File Hash-Calculator. Spring + JSF + Html5 + Bootstrap Demo.
+                            WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap Demo.
                         </h4>
                     </div>        
 
@@ -99,7 +99,7 @@
                                     <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
                                         <hr/>
                                         <div class="text-info" align="left">
-                                            <label>${txtList.type}</label> = <label>${txtList.hash}</label>
+                                            <label class="label label-info">${txtList.type}</label>=<label>${txtList.hash}</label>
                                         </div>
                                     </c:forEach>
                                 </c:if>
@@ -113,8 +113,8 @@
                                 <div class="file-input">
                                     <br/>
                                     <label class="file-input btn btn-info">
-                                        <span class="glyphicon glyphicon-open-file"/>
-                                        Browse 
+                                        <span class="glyphicon glyphicon-hdd"/>
+                                        &nbsp; Browse 
                                         <input 
                                             jsf:id="finput" 
                                             class="btn btn-default file-input" 
@@ -136,7 +136,7 @@
                                     <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
                                         <hr/>
                                         <div class="text-info" align="left">
-                                            <label>${fsList.type}</label> = <label>${fsList.hash}</label>
+                                            <label class="label label-success">${fsList.type}</label>=<label>${fsList.hash}</label>
                                         </div>
                                     </c:forEach>
                                 </c:if>                    
@@ -150,7 +150,8 @@
                     <div class="nav-header bg-info text-center">
                         <span class="glyphicon glyphicon-info-sign"/>
                         Build 22-09-2021.
-                    </div>   
+                    </div>  
+                    <hr/>
 
                 </div>
 
