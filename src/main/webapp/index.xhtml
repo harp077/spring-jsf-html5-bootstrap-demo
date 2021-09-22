@@ -16,35 +16,6 @@
         <!--<link rel="stylesheet" href="resources/css/normalize.css"></link>-->
         <script src="resources/js/jquery-1.12.4.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
-
-        <script>
-            //$(document).ready(function () {
-            //$("#header").load("header.xhtml");
-            //$("#center").load("center.xhtml");
-            //$("#footer").load("footer.xhtml");
-            //alert('opa !');
-            $window.hover(function () {
-                $('#btnGetFileHash').onclick(function () {
-                    $("#liTextHash").removeClass("active");
-                    $("#liFileHash").addClass("active");
-                });
-                $('#btnGetTextHash').onclick(function () {
-                    $("#liFileHash").removeClass("active");
-                    $("#liTextHash").addClass("active");
-                });
-            });
-            function clickFile() {
-                $("#liFileHash").addClass("active");
-                $("#liTextHash").removeClass("active");
-            }
-            ;
-            function clickText() {
-                $("#liTextHash").addClass("active");
-                $("#liFileHash").removeClass("active");
-            }
-            ;
-        </script>
-
     </head>
 
     <body style="margin-top: 5px;">
@@ -243,5 +214,33 @@
         </div>
 
     </body>
+
+    <script>
+        $(document).ready(function () {
+            //$("#header").load("header.xhtml");
+            //$("#center").load("center.xhtml");
+            //$("#footer").load("footer.xhtml");
+            alert('opa !');
+            //$window.load(function () {
+            $('#btnGetFileHash').onclick(function () {
+                $("#liTextHash").removeClass("active");
+                $("#liFileHash").addClass("active");
+            });
+            $('#btnGetTextHash').onclick(function () {
+                $("#liFileHash").removeClass("active");
+                $("#liTextHash").addClass("active");
+            });
+        });
+        function clickFile() {
+            $("#liFileHash").addClass("active");
+            $("#liTextHash").removeClass("active");
+        }
+        ;
+        function clickText() {
+            $("#liTextHash").addClass("active");
+            $("#liFileHash").removeClass("active");
+        }
+        ;
+    </script>    
 
 </html>
