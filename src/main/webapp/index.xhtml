@@ -216,19 +216,20 @@
     </body>
 
     <script>
-        $(document).ready(function () {
+        //$(document).ready(function () {
             //$("#header").load("header.xhtml");
             //$("#center").load("center.xhtml");
             //$("#footer").load("footer.xhtml");
-            alert('opa !');
-            //$window.load(function () {
-            $('#btnGetFileHash').onclick(function () {
-                $("#liTextHash").removeClass("active");
-                $("#liFileHash").addClass("active");
+            //alert('opa !');
+        $(window).load(function () {
+            //alert('opa !');
+            $('#btnGetFileHash').click(function () {
+                $('#liTextHash').attr('class','');
+                $('#liFileHash').attr('class','active');
             });
-            $('#btnGetTextHash').onclick(function () {
-                $("#liFileHash").removeClass("active");
-                $("#liTextHash").addClass("active");
+            $('#btnGetTextHash').click(function () {
+                $('#liFileHash').attr('class','');
+                $('#liTextHash').attr('class','active');
             });
         });
         function clickFile() {
