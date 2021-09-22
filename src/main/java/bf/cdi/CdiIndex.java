@@ -44,8 +44,8 @@ public class CdiIndex {
         "md2",
         "md5",
         "sha1",
-        "sha256",
-        "sha384"
+        "sha256"
+        //,"sha384"
         //,"sha512"//,
         /////////
         /*"crc32",
