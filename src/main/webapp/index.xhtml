@@ -22,106 +22,124 @@
         <script src="resources/js/uikit-icons.min.js"></script>--> 
         <script src="resources/js/bootstrap.min.js"></script>
 
-        <!--<script>
-            $(document).ready(function () {
-                $("#header").load("header.xhtml");
-                $("#center").load("center.xhtml");
-                $("#footer").load("footer.xhtml");
+        <script>
+            /**$(document).ready(function () {
+                //$("#header").load("header.xhtml");
+                //$("#center").load("center.xhtml");
+                //$("#footer").load("footer.xhtml");
                 //alert('opa !');
-            });
-        </script>-->
+                $('#btnGetFileHash').toggle(function () {
+                    $("#liFileHash").addClass("active");
+                }, function () {
+                    $("#liTextHash").removeClass("active");
+                });
+                $('#btnGetTextHash').toggle(function () {
+                    $("#liTextHash").addClass("active");
+                }, function () {
+                    $("#liFileHash").removeClass("active");
+                });
+            });**/
+            function clickFile() {
+                    $("#liFileHash").addClass("active");
+                    $("#liTextHash").removeClass("active");
+            };
+            function clickText() {
+                    $("#liTextHash").addClass("active");
+                    $("#liFileHash").removeClass("active");
+            };            
+        </script>
 
     </head>
 
     <body style="margin-top: 1px;">
-        
+
         <div class="container-fluid">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-1">
 
-                <div class="nav-header bg-success text-center">
-                    <h4>WEB Text and File Hash-Calculator. Spring + JSF + Html5 + Bootstrap Demo.</h4>
-                </div>        
+                    <div class="nav-header bg-success text-center">
+                        <h4>WEB Text and File Hash-Calculator. Spring + JSF + Html5 + Bootstrap Demo.</h4>
+                    </div>        
 
-                <div align="center">
-                    <ul class="nav nav-tabs is-primary">
-                        <li class="active">
-                            <a data-toggle="tab" href="#text-tab">Text Hash</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#file-tab">File Hash</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="tab-content">
-
-                    <div align="center" class="tab-pane active" id="text-tab">
-
-                        <form jsf:id="txtForm">
-                            <br/>
-                            <textarea class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
-                            <br/>
-                            <a class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">get hash</a>
-
-                            <c:if test="#{not empty cdiIndex.textHashesList}">
-                                <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
-                                    <hr/>
-                                    <div class="text-info" align="left">
-                                        <label>${txtList.type}</label> = <label>${txtList.hash}</label>
-                                    </div>
-                                </c:forEach>
-                            </c:if>
-                        </form>
-
+                    <div align="center">
+                        <ul class="nav nav-tabs is-primary">
+                            <li id="liTextHash" class="active">
+                                <a data-toggle="tab" href="#text-tab">Text Hash</a>
+                            </li>
+                            <li id="liFileHash">
+                                <a data-toggle="tab" href="#file-tab">File Hash</a>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div align="center" class="tab-pane" id="file-tab">
+                    <div class="tab-content">
 
-                        <form jsf:id="fileForm" enctype="multipart/form-data">
-                            <div class="file-input">
+                        <div align="center" class="tab-pane active" id="text-tab">
+
+                            <form jsf:id="txtForm">
                                 <br/>
-                                <label class="file-input btn btn-info">
-                                    Browse 
-                                    <input 
-                                        jsf:id="finput" 
-                                        class="btn btn-default file-input" 
-                                        type="file" 
-                                        jsf:value="#{cdiIndex.uploadedFile}">
-                                        <f:ajax listener="#{cdiIndex.upload()}" />
-                                    </input>
-                                </label>                        
-                            </div> 
-                            <br/>
-                            <a class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">get hash</a>
+                                <textarea class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
+                                <br/>
+                                <a id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">get hash</a>
 
-                            <c:if test="#{not empty cdiIndex.fileHashesList}">
-                                <hr/>                        
-                                <label jsf:value="Hashes for file = #{cdiIndex.uploadedFile.submittedFileName}"/>
-                                <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
-                                    <hr/>
-                                    <div class="text-info" align="left">
-                                        <label>${fsList.type}</label> = <label>${fsList.hash}</label>
-                                    </div>
-                                </c:forEach>
-                            </c:if>                    
+                                <c:if test="#{not empty cdiIndex.textHashesList}">
+                                    <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
+                                        <hr/>
+                                        <div class="text-info" align="left">
+                                            <label>${txtList.type}</label> = <label>${txtList.hash}</label>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
+                            </form>
 
-                        </form>   
+                        </div>
 
-                    </div>
+                        <div align="center" class="tab-pane" id="file-tab">
 
-                </div>     
+                            <form jsf:id="fileForm" enctype="multipart/form-data">
+                                <div class="file-input">
+                                    <br/>
+                                    <label class="file-input btn btn-info">
+                                        Browse 
+                                        <input 
+                                            jsf:id="finput" 
+                                            class="btn btn-default file-input" 
+                                            type="file" 
+                                            jsf:value="#{cdiIndex.uploadedFile}">
+                                            <f:ajax listener="#{cdiIndex.upload()}" />
+                                        </input>
+                                    </label>                        
+                                </div> 
+                                <br/>
+                                <a id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">get hash</a>
 
-                <div class="nav-header bg-info text-center">
-                    Build 22-09-2021.
-                </div>   
+                                <c:if test="#{not empty cdiIndex.fileHashesList}">
+                                    <hr/>                        
+                                    <label jsf:value="Hashes for file = #{cdiIndex.uploadedFile.submittedFileName}"/>
+                                    <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
+                                        <hr/>
+                                        <div class="text-info" align="left">
+                                            <label>${fsList.type}</label> = <label>${fsList.hash}</label>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>                    
+
+                            </form>   
+
+                        </div>
+
+                    </div>     
+
+                    <div class="nav-header bg-info text-center">
+                        Build 22-09-2021.
+                    </div>   
+
+                </div>
 
             </div>
 
-        </div>
-            
         </div>
 
     </body>
