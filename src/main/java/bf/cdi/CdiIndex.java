@@ -29,7 +29,7 @@ public class CdiIndex implements Serializable {
     }
     
     @Inject 
-    private CdiMessages cdiMess;        
+    private transient CdiMessages cdiMess;        
 
     private String hashText;
     //private Map<String, String> hashes = new HashMap<>();

@@ -15,7 +15,7 @@ import org.springframework.web.context.annotation.SessionScope;
 public class UserSession implements Serializable {
     
     @Inject 
-    private CdiMessages cdiMess;    
+    private transient CdiMessages cdiMess;    
     
     private String skin;
     private String lang; 
