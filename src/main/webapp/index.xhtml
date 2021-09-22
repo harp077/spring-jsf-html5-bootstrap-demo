@@ -22,32 +22,30 @@
         <script src="resources/js/uikit-icons.min.js"></script>--> 
         <script src="resources/js/bootstrap.min.js"></script>
 
-        <script>
-            /**$(document).ready(function () {
+        <!--<script>
+            $(document).ready(function () {
                 //$("#header").load("header.xhtml");
                 //$("#center").load("center.xhtml");
                 //$("#footer").load("footer.xhtml");
                 //alert('opa !');
-                $('#btnGetFileHash').toggle(function () {
-                    $("#liFileHash").addClass("active");
-                }, function () {
+                $('#btnGetFileHash').onclick(function () {
                     $("#liTextHash").removeClass("active");
+                    $("#liFileHash").addClass("active");                    
                 });
-                $('#btnGetTextHash').toggle(function () {
-                    $("#liTextHash").addClass("active");
-                }, function () {
+                $('#btnGetTextHash').onclick(function () {
                     $("#liFileHash").removeClass("active");
+                    $("#liTextHash").addClass("active");                    
                 });
-            });**/
+            });
             function clickFile() {
-                    $("#liFileHash").addClass("active");
-                    $("#liTextHash").removeClass("active");
+                $("#liFileHash").addClass("active");
+                $("#liTextHash").removeClass("active");
             };
             function clickText() {
-                    $("#liTextHash").addClass("active");
-                    $("#liFileHash").removeClass("active");
+                $("#liTextHash").addClass("active");
+                $("#liFileHash").removeClass("active");
             };            
-        </script>
+        </script>-->
 
     </head>
 
