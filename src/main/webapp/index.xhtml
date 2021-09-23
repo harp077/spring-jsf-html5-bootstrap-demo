@@ -242,48 +242,33 @@
     <script type='text/javascript'>
         jQuery.noConflict();
         jQuery(document).ready(function ($) {
-            /*$('#product a').click(function (e) {
+            if (location.hash) {
+                $('a[href=\'' + location.hash + '\']').tab('show');
+            }
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('a[href="' + activeTab + '"]').tab('show');
+            }
+
+            $('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
                 e.preventDefault();
+                var tab_name = this.getAttribute('href');
+                if (history.pushState) {
+                    history.pushState(null, null, tab_name);
+                } else {
+                    location.hash = tab_name;
+                }
+                localStorage.setItem('activeTab', tab_name);
+
                 $(this).tab('show');
-            });*/
-            $('.nav-pills > li > a').click(function (e) {
-                //e.preventDefault();
-                $(this).parent().addClass('active');
-                $('.nav-pills > li.active').removeClass('active');
-                //$(this).addClass('active');
+                return false;
             });
-            //$(document).ready(function () {
-            //$("#header").load("header.xhtml");
-            //$("#center").load("center.xhtml");
-            //$("#footer").load("footer.xhtml");
-            //alert('opa !');
-            //$(window).load(function () {
-            //alert('opa !');
-            /*$('#liFileHash > a').click(function () {
-             $('.nav-pills > li.active').removeClass('active');
-             $('#liFileHash').addClass('active');
-             //$('#text-tab').removeClass('active');
-             //$('#file-tab').addClass('active');                
-             //$('#a-tab-file').show();
-             });
-             $('#liTextHash > a').click(function () {
-             $('.nav-pills > li.active').removeClass('active');
-             $('#liTextHash').addClass('active');
-             //$('#file-tab').removeClass('active');
-             //$('#text-tab').addClass('active');                
-             //$('#a-tab-text').show();
-             });*/
+            $(window).on('popstate', function () {
+                var anchor = location.hash ||
+                        $('a[data-toggle=\'tab\']').first().attr('href');
+                $('a[href=\'' + anchor + '\']').tab('show');
+            });
         });
-        function clickFile() {
-            $("#liFileHash").addClass("active");
-            $("#liTextHash").removeClass("active");
-        }
-        ;
-        function clickText() {
-            $("#liTextHash").addClass("active");
-            $("#liFileHash").removeClass("active");
-        }
-        ;
     </script>    
 
 </html>
