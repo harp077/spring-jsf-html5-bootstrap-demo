@@ -28,7 +28,7 @@
 
                 <div class="panel-heading">
                     <h1 style="color: black;" class="panel-title text-center">
-                        <button onclick="window.location.href='/spring-jsf-html5-bootstrap-demo/faces/index.xhtml'" class="btn btn-primary btn-sm">
+                        <button onclick="window.location.href = '/spring-jsf-html5-bootstrap-demo/faces/index.xhtml'" class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-home"/>
                             Home
                         </button>
@@ -60,18 +60,26 @@
                                     </div>
                                 </div>
                             </nav>
+Добавление aria-атрибутов в разметку
+Если вы хотите сделать сайт более доступным для людей с ограниченными возможностями, 
+то данную разметку следует дополнить aria-атрибутами.
+Эти атрибуты предназначены для специальных приложений, 
+например экранных дикторов, с помощью которых пользователи прослушивают страницы.
+Для этого к вкладкам необходимо добавить role="tablist", role="tab", role="tabpanel" и
+дополнительные aria-атрибуты с помощью которых передать пользователям специальных приложений 
+структуру, функциональность и текущее состояния табов.                            
                             -->
 
                             <div align="center">
-                                <ul role="tablist" class="nav nav-tabs is-primary nav-justified nav-pills">
-                                    <li role="presentation" id="liTextHash" class="active">
-                                        <a id="a-tab-text" aria-controls="text-tab" role="tab" data-toggle="tab" href="#text-tab">
+                                <ul id="product" class="nav nav-tabs is-primary nav-justified nav-pills">
+                                    <li id="liTextHash" class="active">
+                                        <a id="a-tab-text" data-toggle="tab" href="#text-tab">
                                             <span class="glyphicon glyphicon-list"/>
                                             Text Hash
                                         </a>
                                     </li>
-                                    <li role="presentation" id="liFileHash">
-                                        <a id="a-tab-file" aria-controls="file-tab" role="tab" data-toggle="tab" href="#file-tab">
+                                    <li id="liFileHash">
+                                        <a id="a-tab-file" data-toggle="tab" href="#file-tab">
                                             <span class="glyphicon glyphicon-file"/>
                                             File Hash
                                         </a>
@@ -81,7 +89,7 @@
 
                             <div class="tab-content">
 
-                                <div align="center" role="tabpanel" class="tab-pane active" id="text-tab">
+                                <div align="center" class="tab-pane active" id="text-tab">
 
                                     <form jsf:id="txtForm" jsf:prependId="false">
                                         <br/>
@@ -107,13 +115,13 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <ul class="list-group">
-                                                    <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
-                                                        <li class="list-group-item">
-                                                        <div class="text-info" align="left">
-                                                            <label class="label label-info">${txtList.type}</label> = <label>${txtList.hash}</label>
-                                                        </div>
-                                                        </li>
-                                                    </c:forEach>
+                                                        <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
+                                                            <li class="list-group-item">
+                                                                <div class="text-info" align="left">
+                                                                    <label class="label label-info">${txtList.type}</label> = <label>${txtList.hash}</label>
+                                                                </div>
+                                                            </li>
+                                                        </c:forEach>
                                                     </ul>
                                                 </div>
                                             </div>                                            
@@ -122,7 +130,7 @@
 
                                 </div>
 
-                                <div align="center" role="tabpanel" class="tab-pane" id="file-tab">
+                                <div align="center" class="tab-pane" id="file-tab">
 
                                     <form jsf:id="fileForm" jsf:prependId="false" enctype="multipart/form-data">
                                         <div class="file-input">
@@ -162,13 +170,13 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <ul class="list-group">
-                                                    <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
-                                                        <li class="list-group-item">
-                                                        <div class="text-info" align="left">
-                                                            <label class="label label-warning">${fsList.type}</label> = <label>${fsList.hash}</label>
-                                                        </div>
-                                                        </li>
-                                                    </c:forEach>
+                                                        <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
+                                                            <li class="list-group-item">
+                                                                <div class="text-info" align="left">
+                                                                    <label class="label label-warning">${fsList.type}</label> = <label>${fsList.hash}</label>
+                                                                </div>
+                                                            </li>
+                                                        </c:forEach>
                                                     </ul>
                                                 </div>
                                             </div>                                            
@@ -234,6 +242,16 @@
     <script type='text/javascript'>
         jQuery.noConflict();
         jQuery(document).ready(function ($) {
+            /*$('#product a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });*/
+            $('.nav-pills > li > a').click(function (e) {
+                //e.preventDefault();
+                $(this).parent().addClass('active');
+                $('.nav-pills > li.active').removeClass('active');
+                //$(this).addClass('active');
+            });
             //$(document).ready(function () {
             //$("#header").load("header.xhtml");
             //$("#center").load("center.xhtml");
@@ -241,20 +259,20 @@
             //alert('opa !');
             //$(window).load(function () {
             //alert('opa !');
-            $('#btnGetFileHash').click(function () {
-                $('#liTextHash').removeClass('active');
-                $('#liFileHash').addClass('active');
-                $('#text-tab').removeClass('active');
-                $('#file-tab').addClass('active');                
-                $('#a-tab-file').show();
-            });
-            $('#btnGetTextHash').click(function () {
-                $('#liFileHash').removeClass('active');
-                $('#liTextHash').addClass('active');
-                $('#file-tab').removeClass('active');
-                $('#text-tab').addClass('active');                
-                $('#a-tab-text').show();
-            });
+            /*$('#liFileHash > a').click(function () {
+             $('.nav-pills > li.active').removeClass('active');
+             $('#liFileHash').addClass('active');
+             //$('#text-tab').removeClass('active');
+             //$('#file-tab').addClass('active');                
+             //$('#a-tab-file').show();
+             });
+             $('#liTextHash > a').click(function () {
+             $('.nav-pills > li.active').removeClass('active');
+             $('#liTextHash').addClass('active');
+             //$('#file-tab').removeClass('active');
+             //$('#text-tab').addClass('active');                
+             //$('#a-tab-text').show();
+             });*/
         });
         function clickFile() {
             $("#liFileHash").addClass("active");
