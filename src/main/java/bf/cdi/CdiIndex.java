@@ -21,9 +21,9 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Named
-//@RequestScope
-@SessionScope
-public class CdiIndex implements Serializable {
+@RequestScope
+//@SessionScope
+public class CdiIndex { //implements Serializable {
 
     public CdiIndex() {
     }
