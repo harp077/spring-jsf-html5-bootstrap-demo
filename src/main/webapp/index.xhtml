@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>jsf-hash</title>   
         <link rel="stylesheet" href="resources/css/bootswatch-darkly.min.css"></link>
-        <!--<link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
+        <!--   well-skins = darkly, slate
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"></link>
         <link rel="stylesheet" href="resources/css/normalize.css"></link>-->
         <script src="resources/js/jquery-1.12.4.min.js"></script>
@@ -62,15 +63,15 @@
                             -->
 
                             <div align="center">
-                                <ul class="nav nav-tabs is-primary nav-justified nav-pills">
-                                    <li id="liTextHash" class="active">
-                                        <a data-toggle="tab" href="#text-tab">
+                                <ul role="tablist" class="nav nav-tabs is-primary nav-justified nav-pills">
+                                    <li role="presentation" id="liTextHash" class="active">
+                                        <a aria-controls="text-tab" role="tab" data-toggle="tab" href="#text-tab">
                                             <span class="glyphicon glyphicon-list"/>
                                             Text Hash
                                         </a>
                                     </li>
-                                    <li id="liFileHash">
-                                        <a data-toggle="tab" href="#file-tab">
+                                    <li role="presentation" id="liFileHash">
+                                        <a aria-controls="file-tab" role="tab" data-toggle="tab" href="#file-tab">
                                             <span class="glyphicon glyphicon-file"/>
                                             File Hash
                                         </a>
@@ -80,7 +81,7 @@
 
                             <div class="tab-content">
 
-                                <div align="center" class="tab-pane active" id="text-tab">
+                                <div align="center" role="tabpanel" class="tab-pane active" id="text-tab">
 
                                     <form jsf:id="txtForm" jsf:prependId="false">
                                         <br/>
@@ -121,7 +122,7 @@
 
                                 </div>
 
-                                <div align="center" class="tab-pane" id="file-tab">
+                                <div align="center" role="tabpanel" class="tab-pane" id="file-tab">
 
                                     <form jsf:id="fileForm" jsf:prependId="false" enctype="multipart/form-data">
                                         <div class="file-input">
