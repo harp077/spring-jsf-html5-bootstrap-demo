@@ -35,7 +35,7 @@ public class CdiIndex { //implements Serializable {
     //private Map<String, String> hashes = new HashMap<>();
     private List<HashDataModel> textHashesList = new ArrayList<>();
     private List<HashDataModel> fileHashesList = new ArrayList<>();
-    private HashDataModel hdm;
+    private transient HashDataModel hdm;
     private Part uploadedFile;
     private File targetFile;
     private String fileName;

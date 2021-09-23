@@ -65,13 +65,13 @@
                             <div align="center">
                                 <ul role="tablist" class="nav nav-tabs is-primary nav-justified nav-pills">
                                     <li role="presentation" id="liTextHash" class="active">
-                                        <a aria-controls="text-tab" role="tab" data-toggle="tab" href="#text-tab">
+                                        <a id="a-tab-text" aria-controls="text-tab" role="tab" data-toggle="tab" href="#text-tab">
                                             <span class="glyphicon glyphicon-list"/>
                                             Text Hash
                                         </a>
                                     </li>
                                     <li role="presentation" id="liFileHash">
-                                        <a aria-controls="file-tab" role="tab" data-toggle="tab" href="#file-tab">
+                                        <a id="a-tab-file" aria-controls="file-tab" role="tab" data-toggle="tab" href="#file-tab">
                                             <span class="glyphicon glyphicon-file"/>
                                             File Hash
                                         </a>
@@ -242,12 +242,18 @@
             //$(window).load(function () {
             //alert('opa !');
             $('#btnGetFileHash').click(function () {
-                $('#liTextHash').attr('class', '');
-                $('#liFileHash').attr('class', 'active');
+                $('#liTextHash').removeClass('active');
+                $('#liFileHash').addClass('active');
+                $('#text-tab').removeClass('active');
+                $('#file-tab').addClass('active');                
+                $('#a-tab-file').show();
             });
             $('#btnGetTextHash').click(function () {
-                $('#liFileHash').attr('class', '');
-                $('#liTextHash').attr('class', 'active');
+                $('#liFileHash').removeClass('active');
+                $('#liTextHash').addClass('active');
+                $('#file-tab').removeClass('active');
+                $('#text-tab').addClass('active');                
+                $('#a-tab-text').show();
             });
         });
         function clickFile() {
