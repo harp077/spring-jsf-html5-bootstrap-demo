@@ -27,9 +27,15 @@
 
                 <div class="panel-heading">
                     <h1 style="color: black;" class="panel-title text-center">
+                        <button onclick="window.location.href='/spring-jsf-html5-bootstrap-demo/faces/index.xhtml'" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-home"/>
+                            Home
+                        </button>
+                        <span class="divider"/>
                         <span class="glyphicon glyphicon-globe"/>
-                        WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap = Demo web-application...  
+                        WEB Hash-Calculator for Text and Files. Spring + JSF + Html5 + Bootstrap = Demo WEB-application 
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#flipFlop">
+                            <span class="glyphicon glyphicon-question-sign"/>
                             About
                         </button>
                     </h1>
@@ -78,7 +84,7 @@
 
                                     <form jsf:id="txtForm" jsf:prependId="false">
                                         <br/>
-                                        <textarea cols="44" rows="4" class="bg-warning" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
+                                        <textarea cols="44" rows="4" class="bg-info" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
                                         <p/>
                                         <a jsf:id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
                                             <span class="glyphicon glyphicon-play"/>
@@ -99,11 +105,15 @@
                                                     </h1>
                                                 </div>
                                                 <div class="panel-body">
+                                                    <ul class="list-group">
                                                     <c:forEach var="txtList" items="${cdiIndex.textHashesList}">
+                                                        <li class="list-group-item">
                                                         <div class="text-info" align="left">
                                                             <label class="label label-info">${txtList.type}</label> = <label>${txtList.hash}</label>
                                                         </div>
+                                                        </li>
                                                     </c:forEach>
+                                                    </ul>
                                                 </div>
                                             </div>                                            
                                         </c:if>
@@ -150,11 +160,15 @@
                                                     </h1>
                                                 </div>
                                                 <div class="panel-body">
+                                                    <ul class="list-group">
                                                     <c:forEach var="fsList" items="${cdiIndex.fileHashesList}">
+                                                        <li class="list-group-item">
                                                         <div class="text-info" align="left">
                                                             <label class="label label-warning">${fsList.type}</label> = <label>${fsList.hash}</label>
                                                         </div>
+                                                        </li>
                                                     </c:forEach>
+                                                    </ul>
                                                 </div>
                                             </div>                                            
                                         </c:if>                    
@@ -216,21 +230,23 @@
 
     </body>
 
-    <script>
-        //$(document).ready(function () {
+    <script type='text/javascript'>
+        jQuery.noConflict();
+        jQuery(document).ready(function ($) {
+            //$(document).ready(function () {
             //$("#header").load("header.xhtml");
             //$("#center").load("center.xhtml");
             //$("#footer").load("footer.xhtml");
             //alert('opa !');
-        $(window).load(function () {
+            //$(window).load(function () {
             //alert('opa !');
             $('#btnGetFileHash').click(function () {
-                $('#liTextHash').attr('class','');
-                $('#liFileHash').attr('class','active');
+                $('#liTextHash').attr('class', '');
+                $('#liFileHash').attr('class', 'active');
             });
             $('#btnGetTextHash').click(function () {
-                $('#liFileHash').attr('class','');
-                $('#liTextHash').attr('class','active');
+                $('#liFileHash').attr('class', '');
+                $('#liTextHash').attr('class', 'active');
             });
         });
         function clickFile() {
