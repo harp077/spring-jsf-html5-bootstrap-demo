@@ -32,6 +32,18 @@
 
                 <div class="panel-body">
 
+                    <c:if test="#{not empty userSession.currentPageMessage}">
+                        <button id="popoverID" type="button" 
+                                class="btn btn-xs btn-#{userSession.currentPageMessage.split('=')[1]} pull-right" 
+                                data-toggle="popover" 
+                                title="#{userSession.currentPageMessage.split('=')[1]} !" 
+                                data-content="#{userSession.currentPageMessage.split('=')[0]}" 
+                                data-placement="left">
+                            <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
+                            <script>$('#popoverID').popover('show');</script>
+                        </button>
+                    </c:if>
+
                     <div class="row" style="width: 100%;">
 
                         <div class="col-md-10 col-md-offset-1">
@@ -238,6 +250,10 @@
     <script type='text/javascript'>
         jQuery.noConflict();
         jQuery(document).ready(function ($) {
+            //$('[data-toggle="popover"]').popover();
+            window.setTimeout(function () {
+                $('#popoverID').popover('hide');
+            }, 3000);
             window.setTimeout(function () {
                 $('#alertID').alert('close');
             }, 5000);
