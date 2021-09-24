@@ -48,6 +48,7 @@ public class UserSession { //implements Serializable {
 
     @PostConstruct
     public void afterBirn() {
+        currentPageMessage="";
         if (skin == null) {
             skin = "darkly";
         }

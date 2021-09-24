@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -67,6 +68,13 @@ public class CdiIndex { //implements Serializable {
         textHashesList.clear();
         fileHashesList.clear();
     }
+    
+    @PreDestroy
+    public void beforeKill() {
+        userSession.setCurrentPageMessage("");
+        textHashesList.clear();
+        fileHashesList.clear();
+    }    
 
     public void calcTextHashesAll() {
         userSession.setCurrentPageMessage("");

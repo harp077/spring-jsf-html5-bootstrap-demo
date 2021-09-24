@@ -32,7 +32,7 @@
 
                 <div class="panel-body">
 
-                    <c:if test="#{not empty userSession.currentPageMessage}">
+                    <c:if test="#{userSession.currentPageMessage.length()>1}">
                         <button id="popoverID" type="button" 
                                 class="btn btn-xs btn-#{userSession.currentPageMessage.split('=')[1]} pull-right" 
                                 data-toggle="popover" 
