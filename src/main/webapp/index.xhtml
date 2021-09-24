@@ -36,7 +36,7 @@
                         <button id="popoverID" type="button" 
                                 class="btn btn-xs btn-#{userSession.currentPageMessage.split('=')[1]} pull-right" 
                                 data-toggle="popover" 
-                                title="#{userSession.currentPageMessage.split('=')[1]} !" 
+                                title="#{userSession.currentPageMessage.split('=')[1]}" 
                                 data-content="#{userSession.currentPageMessage.split('=')[0]}" 
                                 data-placement="left">
                             <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
@@ -257,7 +257,7 @@
             }, 3000);
             window.setTimeout(function () {
                 $('#alertID').alert('close');
-            }, 5000);
+            }, 3000);
             $("#headerID").load("header.xhtml");
             $("#footerID").load("footer.xhtml");
             //
