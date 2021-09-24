@@ -10,7 +10,7 @@
 
     <head>
         <meta name="viewport" http-equiv="Content-Type" 
-            content="text/html; charset=UTF-8; width=device-width, initial-scale=1.0" />
+              content="text/html; charset=UTF-8; width=device-width, initial-scale=1.0" />
         <title>jsf-hash</title>   
         <link rel="stylesheet" href="resources/css/bootswatch-darkly.min.css"></link>
         <!--   well-skins = darkly, slate
@@ -182,6 +182,17 @@
 
                 </div>
 
+                <c:if test="#{not empty userSession.currentPageMessage}">
+                    <div id="alertID" class="alert alert-#{userSession.currentPageMessage.split('=')[1]} alert-dismissible">
+                        <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}-sign"/>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span class="glyphicon glyphicon-remove"/>
+                            <span aria-hidden="true">&times;</span>
+                        </button>                    
+                        <label jsf:value="#{userSession.currentPageMessage.split('=')[0]}"/>
+                    </div>  
+                </c:if>
+
                 <div id="footerID" class="panel-footer text-center">
                 </div> 
 
@@ -228,8 +239,12 @@
     <script type='text/javascript'>
         jQuery.noConflict();
         jQuery(document).ready(function ($) {
+            window.setTimeout(function () {
+                $('#alertID').alert('close');
+            }, 3500);
             $("#headerID").load("header.xhtml");
-            $("#footerID").load("footer.xhtml");            
+            $("#footerID").load("footer.xhtml");
+            //
             if (location.hash) {
                 $('a[href=\'' + location.hash + '\']').tab('show');
             }

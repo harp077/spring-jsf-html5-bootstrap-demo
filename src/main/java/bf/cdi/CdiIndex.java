@@ -29,7 +29,9 @@ public class CdiIndex { //implements Serializable {
     }
     
     @Inject 
-    private transient CdiMessages cdiMess;        
+    private transient CdiMessages cdiMess; 
+    @Inject 
+    private UserSession userSession;     
 
     private String hashText;
     //private Map<String, String> hashes = new HashMap<>();
@@ -97,9 +99,11 @@ public class CdiIndex { //implements Serializable {
             //////////  Hashing.crc32().hashString(buf, Charsets.UTF_8).toString()
             hashes.put("adler32",Hashing.adler32().hashUnencodedChars(hashText).toString());*/
             cdiMess.addMessage("Hashes calculated !","calc-hash",FacesMessage.SEVERITY_INFO);
+            userSession.setCurrentPageMessage("Hashes calculated !=success=ok");
         } else {
             clearText();
             cdiMess.addMessage("Emty Text Area !","null-text",FacesMessage.SEVERITY_ERROR);
+            userSession.setCurrentPageMessage("Emty Text Area !=danger=remove");
         }
     }
     
@@ -107,6 +111,7 @@ public class CdiIndex { //implements Serializable {
     public void upload() {
         if (uploadedFile.getSize()<=0L) {
             cdiMess.addMessage("Empty file !","null-file",FacesMessage.SEVERITY_ERROR);
+            userSession.setCurrentPageMessage("Empty file !=danger=remove");
             clearFile();
             return;
         }
@@ -141,11 +146,13 @@ public class CdiIndex { //implements Serializable {
             }
             targetFile.delete();
             cdiMess.addMessage("Hashes calculated !","calc-hash",FacesMessage.SEVERITY_INFO);
+            userSession.setCurrentPageMessage("Hashes calculated !=success=ok");
         } catch (IOException ex) {
             targetFile.delete();
             clearFile();
             System.out.println(ex.toString());
             cdiMess.addMessage("IO-exception !","io-exception",FacesMessage.SEVERITY_INFO);
+            userSession.setCurrentPageMessage("Input-Output Error !=danger=remove");
         }
     }  
     

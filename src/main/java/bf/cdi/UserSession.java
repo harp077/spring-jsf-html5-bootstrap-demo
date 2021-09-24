@@ -19,6 +19,7 @@ public class UserSession { //implements Serializable {
 
     private String skin;
     private String lang;
+    private String currentPageMessage;
 
     private final String[] LANGS = {
         "ru",
@@ -96,6 +97,14 @@ public class UserSession { //implements Serializable {
 
     public String[] getSKINS() {
         return SKINS;
+    }
+
+    public String getCurrentPageMessage() {
+        return currentPageMessage;
+    }
+
+    public void setCurrentPageMessage(String currentPageMessage) {
+        this.currentPageMessage = currentPageMessage;
     }
 
 }
