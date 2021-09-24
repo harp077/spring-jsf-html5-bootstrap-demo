@@ -56,7 +56,7 @@
             <artifactId>myfaces-impl</artifactId>
             <version>${mf-ver}</version>
         </dependency>                
-        <!-- load by MyFaces !!!!!
+        <!-- load by MyFaces 2.2.14 + NOT load by v2.3.9 !!!!! 
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
