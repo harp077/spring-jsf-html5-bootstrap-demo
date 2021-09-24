@@ -184,12 +184,11 @@
 
                 <c:if test="#{not empty userSession.currentPageMessage}">
                     <div id="alertID" class="alert alert-#{userSession.currentPageMessage.split('=')[1]} alert-dismissible">
-                        <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}-sign"/>
+                        <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span class="glyphicon glyphicon-remove"/>
-                            <span aria-hidden="true">&times;</span>
                         </button>                    
-                        <label jsf:value="#{userSession.currentPageMessage.split('=')[0]}"/>
+                        <label jsf:value=" - #{userSession.currentPageMessage.split('=')[0]}"/>
                     </div>  
                 </c:if>
 
@@ -241,7 +240,7 @@
         jQuery(document).ready(function ($) {
             window.setTimeout(function () {
                 $('#alertID').alert('close');
-            }, 3500);
+            }, 5000);
             $("#headerID").load("header.xhtml");
             $("#footerID").load("footer.xhtml");
             //
