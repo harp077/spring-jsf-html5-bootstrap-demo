@@ -9,7 +9,10 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta 
+            name="viewport" 
+            http-equiv="Content-Type" 
+            content="text/html; charset=UTF-8; width=device-width, initial-scale=1.0" />
         <title>jsf-hash</title>   
         <link rel="stylesheet" href="resources/css/bootswatch-darkly.min.css"></link>
         <!--   well-skins = darkly, slate
@@ -93,7 +96,7 @@
 
                                     <form jsf:id="txtForm" jsf:prependId="false">
                                         <br/>
-                                        <textarea cols="44" rows="4" class="bg-info" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
+                                        <textarea cols="44" rows="4" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
                                         <p/>
                                         <a jsf:id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
                                             <span class="glyphicon glyphicon-play"/>
