@@ -102,9 +102,10 @@
                                             <f:ajax execute="txtForm" render="txtForm" event="click" listener="#{cdiIndex.calcTextHashesAll()}"/>
                                         </a> 
                                         ...
-                                        <a id="btnClearTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.clearText()}">
+                                        <a jsf:id="btnClearTextHash" class="btn btn-success"> <!--jsf:actionListener="{cdiIndex.clearText()}">-->
                                             <span class="glyphicon glyphicon-remove"/>
                                             Clear
+                                            <f:ajax execute="txtForm" render="txtForm" event="click" listener="#{cdiIndex.clearText()}"/>
                                         </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.textHashesList}">
@@ -155,9 +156,10 @@
                                             <f:ajax execute="fileForm" render="fileForm" event="click" listener="#{cdiIndex.upload()}"/>
                                         </a>
                                         ...
-                                        <a id="btnClearFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.clearFile()}">
+                                        <a jsf:id="btnClearFileHash" class="btn btn-success"> <!--jsf:actionListener="{cdiIndex.clearFile()}">-->
                                             <span class="glyphicon glyphicon-remove"/>
                                             Clear
+                                            <f:ajax execute="fileForm" render="fileForm" event="click" listener="#{cdiIndex.clearFile()}"/>
                                         </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.fileHashesList}">
