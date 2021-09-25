@@ -69,12 +69,12 @@ public class CdiIndex { //implements Serializable {
         fileHashesList.clear();
     }
     
-    @PreDestroy
+    /*@PreDestroy
     public void beforeKill() {
         userSession.setCurrentPageMessage("");
         textHashesList.clear();
         fileHashesList.clear();
-    }    
+    } */   
 
     public void calcTextHashesAll() {
         userSession.setCurrentPageMessage("");
