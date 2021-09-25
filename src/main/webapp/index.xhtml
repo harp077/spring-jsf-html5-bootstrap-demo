@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="resources/css/normalize.css"></link>-->
         <script src="resources/js/jquery-1.12.4.min.js"></script>
         <script src="resources/js/bootstrap.min.js"></script>
+        <!--<script src="resources/js/jsf-mojarra.js"></script>-->
     </head>
 
     <body style="margin-top: 5px;">
@@ -95,9 +96,10 @@
                                         <br/>
                                         <textarea cols="44" rows="4" jsf:id="txtHash" jsf:value="#{cdiIndex.hashText}" p:placeholder="Enter text here"/>
                                         <p/>
-                                        <a jsf:id="btnGetTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.calcTextHashesAll()}">
+                                        <a jsf:id="btnGetTextHash" class="btn btn-success"> <!-- jsf:actionListener="{cdiIndex.calcTextHashesAll()}" >-->
                                             <span class="glyphicon glyphicon-play"/>
                                             Get Text Hash
+                                            <f:ajax execute="txtForm" render="txtForm" event="click" listener="#{cdiIndex.calcTextHashesAll()}"/>
                                         </a> 
                                         ...
                                         <a id="btnClearTextHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.clearText()}">
@@ -107,7 +109,7 @@
 
                                         <c:if test="#{not empty cdiIndex.textHashesList}">
                                             <p/>
-                                            <div class="panel panel-info">
+                                            <div jsf:id="txtResultPanel" class="panel panel-info">
                                                 <div class="panel-heading">
                                                     <h1 class="panel-title">
                                                         <label jsf:value="Hashes for text = #{cdiIndex.hashText}"/>
@@ -143,16 +145,14 @@
                                                     class="btn btn-default file-input" 
                                                     type="file" 
                                                     jsf:value="#{cdiIndex.uploadedFile}">
-                                                    <ui:remove>
-                                                        <f:ajax listener="#{cdiIndex.upload()}" />
-                                                    </ui:remove>
                                                 </input>
                                             </label>                        
                                         </div> 
                                         <br/>
-                                        <a jsf:ajax="true" jsf:id="btnGetFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.upload()}">
+                                        <a jsf:id="btnGetFileHash" class="btn btn-success"> <!--jsf:actionListener="{cdiIndex.upload()}">-->
                                             <span class="glyphicon glyphicon-play"/>
                                             Get File Hash
+                                            <f:ajax execute="fileForm" render="fileForm" event="click" listener="#{cdiIndex.upload()}"/>
                                         </a>
                                         ...
                                         <a id="btnClearFileHash" class="btn btn-success" jsf:actionListener="#{cdiIndex.clearFile()}">
