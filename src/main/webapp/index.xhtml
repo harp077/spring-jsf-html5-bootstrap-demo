@@ -27,7 +27,7 @@
         <div class="container-fluid">
 
             <div class="panel panel-success">
-
+                
                 <div id="headerID" class="panel-heading">
                 </div>
 
@@ -44,7 +44,7 @@
                             <script>$('#popoverID').popover('show');</script>
                         </button>
                     </c:if>
-
+                    
                     <div class="row" style="width: 100%;">
 
                         <div class="col-md-10 col-md-offset-1">
@@ -99,13 +99,13 @@
                                         <a jsf:id="btnGetTextHash" class="btn btn-success"> <!-- jsf:actionListener="{cdiIndex.calcTextHashesAll()}" >-->
                                             <span class="glyphicon glyphicon-play"/>
                                             Get Text Hash
-                                            <f:ajax execute="txtForm" render="txtForm" event="click" listener="#{cdiIndex.calcTextHashesAll()}"/>
+                                            <f:ajax execute="txtForm" render="txtForm msgID" event="click" listener="#{cdiIndex.calcTextHashesAll()}"/>
                                         </a> 
                                         ...
                                         <a jsf:id="btnClearTextHash" class="btn btn-success"> <!--jsf:actionListener="{cdiIndex.clearText()}">-->
                                             <span class="glyphicon glyphicon-remove"/>
                                             Clear
-                                            <f:ajax execute="txtForm" render="txtForm" event="click" listener="#{cdiIndex.clearText()}"/>
+                                            <f:ajax execute="txtForm" render="txtForm  msgID" event="click" listener="#{cdiIndex.clearText()}"/>
                                         </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.textHashesList}">
@@ -149,17 +149,17 @@
                                                 </input>
                                             </label>                        
                                         </div> 
-                                        <br/>
+                                        <br/> 
                                         <a jsf:id="btnGetFileHash" class="btn btn-success"> <!--jsf:actionListener="{cdiIndex.upload()}">-->
                                             <span class="glyphicon glyphicon-play"/>
                                             Get File Hash
-                                            <f:ajax execute="fileForm" render="fileForm" event="click" listener="#{cdiIndex.upload()}"/>
+                                            <f:ajax execute="fileForm" render="fileForm msgID" event="click" listener="#{cdiIndex.upload()}"/>
                                         </a>
                                         ...
                                         <a jsf:id="btnClearFileHash" class="btn btn-success"> <!--jsf:actionListener="{cdiIndex.clearFile()}">-->
                                             <span class="glyphicon glyphicon-remove"/>
                                             Clear
-                                            <f:ajax execute="fileForm" render="fileForm" event="click" listener="#{cdiIndex.clearFile()}"/>
+                                            <f:ajax execute="fileForm" render="fileForm msgID" event="click" listener="#{cdiIndex.clearFile()}"/>
                                         </a>                                        
 
                                         <c:if test="#{not empty cdiIndex.fileHashesList}">
@@ -193,9 +193,11 @@
                         </div>
 
                     </div> 
+                    
+                    <h:messages title="message" class="pull-right" id="msgID"/>
 
                 </div>
-
+                
                 <c:if test="#{not empty userSession.currentPageMessage}">
                     <div id="alertID" class="alert alert-#{userSession.currentPageMessage.split('=')[1]} alert-dismissible">
                         <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
@@ -253,6 +255,9 @@
         jQuery.noConflict();
         jQuery(document).ready(function ($) {
             //$('[data-toggle="popover"]').popover();
+            window.setTimeout(function () {
+                $('#msgID').fadeOut();
+            }, 3000);            
             window.setTimeout(function () {
                 $('#popoverID').popover('hide');
                 $('#popoverID').hide();
