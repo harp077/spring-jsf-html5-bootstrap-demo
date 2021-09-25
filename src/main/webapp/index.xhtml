@@ -109,7 +109,7 @@
 
                                         <c:if test="#{not empty cdiIndex.textHashesList}">
                                             <p/>
-                                            <div jsf:id="txtResultPanel" class="panel panel-info">
+                                            <div class="panel panel-info">
                                                 <div class="panel-heading">
                                                     <h1 class="panel-title">
                                                         <label jsf:value="Hashes for text = #{cdiIndex.hashText}"/>
@@ -134,7 +134,7 @@
 
                                 <div align="center" class="tab-pane" id="file-tab">
 
-                                    <form jsf:id="fileForm" jsf:prependId="false" enctype="multipart/form-data">
+                                    <form jsf:id="fileForm" jsf:prependId="false" jsf:enctype="multipart/form-data">
                                         <div class="file-input">
                                             <br/>
                                             <label class="file-input btn btn-info">
