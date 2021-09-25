@@ -194,7 +194,11 @@
 
                     </div> 
                     
-                    <h:messages class="pull-right alert-#{userSession.currentPageMessage.split('=')[1]}" id="msgID"/>
+                    <h:messages class="pull-right alert-#{userSession.currentPageMessage.split('=')[1]}" id="msgID">
+                        <ui:remove>
+                        <span class="pull-right glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
+                        </ui:remove>
+                    </h:messages>
 
                 </div>
                 
