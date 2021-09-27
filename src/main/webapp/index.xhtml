@@ -27,7 +27,7 @@
         <div class="container-fluid">
 
             <div class="panel panel-success">
-                
+
                 <div id="headerID" class="panel-heading">
                 </div>
 
@@ -44,7 +44,7 @@
                             <script>$('#popoverID').popover('show');</script>
                         </button>
                     </c:if>
-                    
+
                     <div class="row" style="width: 100%;">
 
                         <div class="col-md-10 col-md-offset-1">
@@ -193,15 +193,15 @@
                         </div>
 
                     </div> 
-                    
-                    <h:messages class="pull-right alert-#{userSession.currentPageMessage.split('=')[1]}" id="msgID">
+
+                    <h:messages class="pull-right bg-#{userSession.currentPageMessage.split('=')[1]}" id="msgID">
                         <ui:remove>
-                        <span class="pull-right glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
+                            <span class="pull-right glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
                         </ui:remove>
                     </h:messages>
 
                 </div>
-                
+
                 <c:if test="#{not empty userSession.currentPageMessage}">
                     <div id="alertID" class="alert alert-#{userSession.currentPageMessage.split('=')[1]} alert-dismissible">
                         <span class="glyphicon glyphicon-#{userSession.currentPageMessage.split('=')[2]}"/>
@@ -253,52 +253,52 @@
 
         </div>
 
-    </body>
-
-    <script type='text/javascript'>
-        jQuery.noConflict();
-        jQuery(document).ready(function ($) {
-            //$('[data-toggle="popover"]').popover();
-            window.setTimeout(function () {
-                $('#msgID').fadeOut();
-            }, 3000);            
-            window.setTimeout(function () {
-                $('#popoverID').popover('hide');
-                $('#popoverID').hide();
-            }, 3000);
-            window.setTimeout(function () {
-                $('#alertID').alert('close');
-            }, 3000);
-            $("#headerID").load("header.xhtml");
-            $("#footerID").load("footer.xhtml");
-            //
-            if (location.hash) {
-                $('a[href=\'' + location.hash + '\']').tab('show');
-            }
-            var activeTab = localStorage.getItem('activeTab');
-            if (activeTab) {
-                $('a[href="' + activeTab + '"]').tab('show');
-            }
-
-            $('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
-                e.preventDefault();
-                var tab_name = this.getAttribute('href');
-                if (history.pushState) {
-                    history.pushState(null, null, tab_name);
-                } else {
-                    location.hash = tab_name;
+        <script type='text/javascript'>
+            jQuery.noConflict();
+            jQuery(document).ready(function ($) {
+                //$('[data-toggle="popover"]').popover();
+                window.setTimeout(function () {
+                    $('#msgID').hide();
+                }, 3000);
+                window.setTimeout(function () {
+                    $('#popoverID').popover('hide');
+                    $('#popoverID').hide();
+                }, 3000);
+                window.setTimeout(function () {
+                    $('#alertID').alert('close');
+                }, 3000);
+                $("#headerID").load("header.xhtml");
+                $("#footerID").load("footer.xhtml");
+                //
+                if (location.hash) {
+                    $('a[href=\'' + location.hash + '\']').tab('show');
                 }
-                localStorage.setItem('activeTab', tab_name);
+                var activeTab = localStorage.getItem('activeTab');
+                if (activeTab) {
+                    $('a[href="' + activeTab + '"]').tab('show');
+                }
 
-                $(this).tab('show');
-                return false;
+                $('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
+                    e.preventDefault();
+                    var tab_name = this.getAttribute('href');
+                    if (history.pushState) {
+                        history.pushState(null, null, tab_name);
+                    } else {
+                        location.hash = tab_name;
+                    }
+                    localStorage.setItem('activeTab', tab_name);
+
+                    $(this).tab('show');
+                    return false;
+                });
+                $(window).on('popstate', function () {
+                    var anchor = location.hash ||
+                            $('a[data-toggle=\'tab\']').first().attr('href');
+                    $('a[href=\'' + anchor + '\']').tab('show');
+                });
             });
-            $(window).on('popstate', function () {
-                var anchor = location.hash ||
-                        $('a[data-toggle=\'tab\']').first().attr('href');
-                $('a[href=\'' + anchor + '\']').tab('show');
-            });
-        });
-    </script>    
+        </script>        
+
+    </body>
 
 </html>
