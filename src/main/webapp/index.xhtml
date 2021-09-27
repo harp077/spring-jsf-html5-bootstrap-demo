@@ -257,9 +257,15 @@
             jQuery.noConflict();
             jQuery(document).ready(function ($) {
                 //$('[data-toggle="popover"]').popover();
-                window.setTimeout(function () {
-                    $('#msgID').hide();
-                }, 3000);
+                // work every time for <h:messages/> !!!!
+                $(window).hover(function () {
+                   window.setTimeout(function () { $('#msgID').hide(1000); }, 4000);
+                });
+                // work only 1 time then reload page for <h:messages/> !!!! = start
+                //window.setTimeout(function () { $('#msgID').html(''); }, 3000);
+                //window.setTimeout(function () { $('#msgID').hide(999); }, 3000);
+                //window.setTimeout(function () { $('#msgID').hide(); }, 3000);
+                // work only 1 time then reload page for <h:messages/> !!!! = end
                 window.setTimeout(function () {
                     $('#popoverID').popover('hide');
                     $('#popoverID').hide();
